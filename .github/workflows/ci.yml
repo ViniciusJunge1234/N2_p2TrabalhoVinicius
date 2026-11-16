@@ -1,0 +1,43 @@
+name: CI e environments da OngConecta
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      destino:
+        description: "Ambiente para validação manual"
+        required: true
+        type: choice
+        options: [staging, production]
+
+jobs:
+  testes:
+    name: Verificar estrutura e testes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm test
+
+  validar-staging:
+    name: Validar staging (sem deploy externo)
+    if: github.event_name == 'workflow_dispatch' && inputs.destino == 'staging'
+    needs: testes
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - run: echo 'Validação demonstrativa concluída em staging.'
+
+  aprovar-production:
+    name: Aprovação de production (sem deploy externo)
+    if: github.event_name == 'workflow_dispatch' && inputs.destino == 'production'
+    needs: testes
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - run: echo 'Etapa de production aprovada e executada.'
