@@ -1,83 +1,82 @@
-# Plano de Gerência de Configuração de Software — OngConecta
+# Plano de Gerência de Configuração de Software — EduFlux
 
-**Acadêmico:** Vinicius Mesquita Junge  
-**Versão:** 1.0  
+**Responsável:** Vinicius Mesquita Junge  
 **Disciplina:** Gerência, Configuração e Processos de Software  
-**Escopo:** Atividade individual N2-P2
+**Atividade:** N2-P2  
+**Versão:** 1.0
 
-## 1. Objetivo
+## 1. Objetivo e contexto
 
-Definir procedimentos para identificação, armazenamento, versionamento, alteração, revisão, rastreabilidade e auditoria dos itens de configuração do projeto demonstrativo OngConecta. O processo adota o Git para histórico de alterações e o GitHub para revisão, permissões e ambientes.
+Controlar a identificação, evolução, revisão, aprovação e rastreabilidade dos artefatos da plataforma educacional EduFlux. O projeto toma como referência o **Domínio 2 — Plataforma educacional** da N2-P1: a análise propôs Scrum para experimentos, fluxo contínuo para chamados das escolas e modelo Incremental para entregas contratuais à prefeitura.
 
-## 2. Identificação dos itens de configuração
+A aplicação implementada nesta entrega é um **protótipo acadêmico**, não um sistema homologado nem conectado a escolas. As práticas descritas abaixo definem um processo de GCS que pode ser demonstrado no GitHub.
 
-| Item | Localização | Controle |
+## 2. Itens de configuração
+
+| IC | Localização | Controle |
 | --- | --- | --- |
-| Código-fonte | `src/` | Commits, branches e Pull Requests |
-| Testes | `tests/` | Histórico Git e CI |
-| Plano de GCS | `docs/Plano_GCS.md` | Versionamento e revisão |
-| Documentação | `README.md`, `docs/` | Histórico Git |
-| Workflows | `.github/workflows/` | Versionamento e revisão |
-| Baselines | Tags `vMAJOR.MINOR.PATCH` | Referência imutável a commits |
+| Interface educacional e regras | `src/` | Git e Pull Requests |
+| Testes unitários | `tests/` | Git e execução pela CI |
+| Documentação | `README.md`, `docs/` | Git e revisão |
+| Plano GCS | `docs/Plano_GCS.md` | Git e revisão |
+| Workflow de CI/ambientes | `.github/workflows/ci.yml` | Git e revisão |
+| Baselines | Tags `vMAJOR.MINOR.PATCH` | Referência a commits aprovados |
 
-## 3. Papéis e responsabilidades
+## 3. Estratégia de branches
 
-- **Responsável pelo projeto:** Vinicius Mesquita Junge (`ViniciusJunge1234`), responsável pela documentação, controle do repositório e revisão de implantações em `production`.
-- **Par de revisão:** colega convidado para colaborar com acesso de escrita, que revisará e aprovará Pull Requests; o nome será registrado quando o convite for aceito.
-- **Professor:** avaliador com acesso de leitura ao repositório público e às evidências.
+- `main`: branch principal, protegida contra push direto.
+- `feature/*`: desenvolvimento de novas funcionalidades ou documentação.
+- `fix/*`: correções de defeitos.
 
-## 4. Estratégia de branches
+Commits devem ter descrição objetiva e identificável. Mudanças destinadas à `main` devem entrar por Pull Request com revisão aprovada.
 
-- `main`: branch estável, protegida contra atualizações diretas.
-- `feature/<assunto>`: alterações planejadas e novas funcionalidades.
-- `fix/<assunto>`: correções.
+## 4. Papéis e responsabilidades
 
-Cada mudança deverá conter uma descrição clara, um commit rastreável e, para integração na `main`, um Pull Request revisado.
+- **ViniciusJunge1234:** proprietário do repositório; mantém o plano, as regras de proteção e aprova execuções do environment `production`.
+- **Par de revisão:** colega convidado com acesso de escrita, que verifica os Pull Requests e registra aprovação ou solicitação de ajustes.
+- **Professor:** avaliador com acesso de leitura ao repositório e às evidências reais.
 
-## 5. Controle de mudanças
+O acesso do revisor deve ser confirmado depois que o convite for aceito.
 
-1. Registrar finalidade e impacto da alteração em issue ou descrição do Pull Request.
-2. Criar branch de trabalho a partir da `main`.
-3. Modificar e testar os arquivos necessários.
-4. Abrir Pull Request para `main` e solicitar avaliação ao colega com acesso de escrita.
-5. Obter a aprovação exigida e corrigir pendências.
-6. Efetuar merge e associar a alteração à entrega ou tag correspondente.
+## 5. Fluxo de solicitação e aprovação de mudanças
 
-## 6. Regras de proteção de `main`
+1. Registrar objetivo, impacto e critérios de verificação em issue ou Pull Request.
+2. Criar uma branch a partir da versão atual de `main`.
+3. Implementar a mudança e executar `npm test`.
+4. Abrir Pull Request direcionado a `main`.
+5. Solicitar revisão de colega com permissão de escrita.
+6. Corrigir observações e obter aprovação, respeitando as regras da branch.
+7. Fazer merge; quando relevante, registrar a entrega como baseline/tag.
 
-O repositório deverá configurar uma regra de proteção com:
+## 6. Baselines, rastreabilidade e auditoria
 
-- Pull Request obrigatório antes de merge.
-- Ao menos uma aprovação de revisão.
-- Bloqueio de bypass da proteção por administradores, quando disponível.
-- Bloqueio de force push e exclusão da branch principal.
+Uma baseline corresponde a um estado identificado e aprovado do código, documentos, testes e configurações. Releases podem ser marcadas com tags, por exemplo `v1.0.0`. A rastreabilidade usa issues, commits, Pull Requests, revisões, testes e tags. Nenhuma tag é declarada criada neste documento sem registro correspondente no GitHub.
 
-**Verificação:** executar uma tentativa real de `git push origin main` com novo commit e registrar a mensagem de rejeição. O arquivo e a evidência serão mantidos em `docs/evidencias/`. Não é suficiente simular a saída do terminal.
+## 7. Política de proteção de `main`
 
-## 7. Environments
+A branch principal deve exigir Pull Request, ao menos uma aprovação e ausência de bypass administrativo, conforme os recursos disponibilizados pela plataforma. Force pushes e exclusão devem permanecer bloqueados.
 
-| Environment | Objetivo | Aprovação |
+**Evidência de funcionamento:** captura real de um `git push origin main` recusado com mensagem `GH006` ou equivalente. A comprovação não deve ser simulada. A proteção existente deve ser mantida quando o conteúdo do projeto for substituído.
+
+## 8. Environments
+
+| Ambiente | Propósito | Condição |
 | --- | --- | --- |
-| `staging` | Homologação e verificação antes da produção | Sem revisor obrigatório nesta versão do plano |
-| `production` | Publicação controlada | `ViniciusJunge1234` como revisor obrigatório |
+| `staging` | Validação anterior à publicação | Execução de testes e verificação da alteração |
+| `production` | Aprovação controlada de release | `ViniciusJunge1234` configurado como revisor obrigatório |
 
-No GitHub, a regra **Required reviewers** de `production` deverá selecionar `ViniciusJunge1234`. Se a intenção for que Vinicius aprove suas próprias execuções, manter **Prevent self-review** desativado. A proteção só se aplica aos jobs que referenciem efetivamente o environment, como o workflow deste projeto.
+O workflow de GitHub Actions referencia os dois environments e permite execução manual, mas **não publica em hospedagem externa**. A regra de revisão deve existir no GitHub para produzir a aprovação obrigatória; somente o arquivo YAML não a cria.
 
-## 8. Verificação, auditoria e rastreabilidade
+## 9. Processo de desenvolvimento previsto na N2-P1
 
-- Os testes serão executados localmente e pelo GitHub Actions, quando habilitado.
-- Commits, branches, Pull Requests e revisões serão registros de auditoria.
-- As evidências administrativas serão capturas reais identificadas em `docs/evidencias/`.
-- Baselines de entrega poderão ser marcadas com tags semânticas, por exemplo `v1.0.0`.
+No cenário completo da EdTech, Scrum apoiaria melhorias experimentais, fluxo contínuo trataria chamados imprevisíveis, e o modelo Incremental seria aplicado às entregas formais da prefeitura. A N2-P1 previa importação de alunos e turmas, registro de uso integrado ao diário e relatórios por escola/aluno. Neste protótipo, há cadastros locais e relatório simples; **não foram implementados integração com diário de classe, operação contratual ou aceite formal**.
 
-## 9. Critérios de conclusão da N2-P2
+## 10. Qualidade e critérios de conclusão
 
-- [x] Plano de GCS disponível como arquivo de configuração.
-- [ ] Repositório publicado e acessível ao professor.
-- [ ] Proteção de `main` configurada e comprovada.
-- [ ] Push direto rejeitado e captura incluída.
-- [ ] Colega com convite aceito e acesso de escrita.
-- [ ] Environment `staging` criado.
-- [ ] Environment `production` criado com `ViniciusJunge1234` como revisor obrigatório.
+- Executar testes automatizados e documentar falhas.
+- Verificar revisão e proteção da `main`.
+- Comprovar acesso de escrita do colaborador.
+- Conferir `staging` e `production` e a aprovação obrigatória em produção.
+- Preservar evidências reais e o link público do repositório.
 
-As caixas são um checklist de validação; a existência deste arquivo não comprova controles administrativos configurados no GitHub.
+O documento especifica controles; a presença do plano não garante que todas as regras administrativas estejam habilitadas.

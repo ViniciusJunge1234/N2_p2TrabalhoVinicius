@@ -1,5 +1,4 @@
-name: CI e environments da OngConecta
-
+name: CI e controle de environments — EduFlux
 on:
   push:
     branches: [main]
@@ -8,14 +7,13 @@ on:
   workflow_dispatch:
     inputs:
       destino:
-        description: "Ambiente para validação manual"
+        description: 'Ambiente a validar'
         required: true
         type: choice
         options: [staging, production]
-
 jobs:
   testes:
-    name: Verificar estrutura e testes
+    name: Testes automatizados
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,21 +21,19 @@ jobs:
         with:
           node-version: '20'
       - run: npm test
-
-  validar-staging:
+  staging:
     name: Validar staging (sem deploy externo)
     if: github.event_name == 'workflow_dispatch' && inputs.destino == 'staging'
     needs: testes
     runs-on: ubuntu-latest
     environment: staging
     steps:
-      - run: echo 'Validação demonstrativa concluída em staging.'
-
-  aprovar-production:
-    name: Aprovação de production (sem deploy externo)
+      - run: echo 'Staging validado; prototipo sem hospedagem externa.'
+  production:
+    name: Aprovar production (sem deploy externo)
     if: github.event_name == 'workflow_dispatch' && inputs.destino == 'production'
     needs: testes
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - run: echo 'Etapa de production aprovada e executada.'
+      - run: echo 'Production aprovado; prototipo sem hospedagem externa.'

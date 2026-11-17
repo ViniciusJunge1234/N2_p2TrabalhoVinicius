@@ -1,13 +1,13 @@
-# Evidências reais da atividade N2-P2
+# Evidências da N2-P2
 
-Inclua capturas de tela **verdadeiras**, sem simular resultados:
+As capturas devem ser **reais** e não geradas ou simuladas:
 
-1. `01-estrutura.png` — tela do repositório mostrando organização e plano.
-2. `02-protecao-main.png` — regra de proteção da `main`.
-3. `03-push-recusado.png` — terminal mostrando a recusa do `git push origin main`.
-4. `04-colaborador.png` — convite aceito e acesso de escrita para o par revisor.
-5. `05-staging.png` — tela de configuração do environment `staging`.
-6. `06-production.png` — tela de configuração do environment `production`, com `ViniciusJunge1234` como revisor obrigatório.
-7. `07-pull-request.png` — Pull Request com revisão, se realizado.
+1. `01-estrutura.png`: arquivos do projeto e Plano de GCS.
+2. `02-protecao-main.png`: regra da branch `main`.
+3. `03-push-recusado.png`: terminal exibindo rejeição real do push direto.
+4. `04-colaborador.png`: colega com acesso aceito.
+5. `05-staging.png`: environment `staging`.
+6. `06-production.png`: `production` com `ViniciusJunge1234` como revisor obrigatório.
+7. `07-pr-revisado.png`: Pull Request aprovado e integrado, quando houver.
 
-Não publique senhas, tokens ou dados pessoais de terceiros que não sejam necessários à avaliação.
+A evidência antiga de push recusado pode ser reaproveitada se foi capturada neste mesmo repositório e as regras de proteção continuarem ativas. O novo projeto deve entrar pela branch de trabalho e Pull Request, sem forçar push direto na `main`.

@@ -1,8 +1,11 @@
 {
-  "name": "ongconecta-n2-p2",
+  "name": "plataforma-educacional-n2p2",
   "version": "1.0.0",
   "private": true,
-  "description": "Projeto demonstrativo e plano de GCS da N2-P2",
-  "scripts": { "test": "node --test tests/*.test.js" },
-  "engines": { "node": ">=20" }
+  "type": "module",
+  "description": "Prototipo de plataforma educacional com controle de GCS",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {"node": ">=20"}
 }
