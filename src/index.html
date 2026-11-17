@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OngConecta — Aproximando pessoas e causas</title>
+  <meta name="theme-color" content="#142b52" />
+  <title>EduFlux — Plataforma Educacional</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topbar"><div class="container"><a class="brand" href="#inicio">Ong<span>Conecta</span></a><nav><a href="#sobre">Sobre</a><a href="#causas">Causas</a><a href="#contato">Contato</a></nav></div></header>
-  <main id="inicio"><section class="hero"><div class="container"><p class="eyebrow">Projeto demonstrativo • Engenharia de Software</p><h1>Conectando pessoas a causas que transformam.</h1><p>Um espaço de exemplo para apresentar iniciativas sociais e estimular o voluntariado.</p><a class="button" href="#causas">Conheça as causas</a></div></section>
-  <section class="container section" id="sobre"><h2>O que é OngConecta?</h2><p>Uma proposta acadêmica de plataforma para facilitar a descoberta de ONGs e oportunidades de participação social.</p></section>
-  <section class="container section" id="causas"><h2>Causas em destaque</h2><div class="cards"><article><span class="emoji">📚</span><h3>Educação</h3><p>Apoie ações de aprendizagem e inclusão.</p></article><article><span class="emoji">🌱</span><h3>Meio ambiente</h3><p>Participe de iniciativas de sustentabilidade.</p></article><article><span class="emoji">🤝</span><h3>Comunidade</h3><p>Fortaleça redes de apoio e solidariedade.</p></article></div></section>
-  <section class="container section" id="contato"><h2>Faça parte da mudança</h2><p>Esta página é uma demonstração acadêmica, sem cadastro ou coleta de dados.</p></section></main>
-  <footer><div class="container">OngConecta • Trabalho N2-P2 • Vinicius Mesquita Junge</div></footer>
-  <script src="app.js"></script>
-</body></html>
+  <header class="topbar"><div class="topinner"><div class="brand"><span class="brandmark">E</span><div><strong>EduFlux</strong><small>Plataforma educacional</small></div></div><span class="tag">Protótipo acadêmico · N2-P2</span></div></header>
+  <main class="wrap">
+    <div class="intro"><div><p class="eyebrow">GESTÃO EDUCACIONAL</p><h1>Painel da escola</h1><p>Acompanhe turmas, atividades e participação dos alunos em um só lugar.</p></div><span class="demo">Dados fictícios · armazenados no navegador</span></div>
+    <section class="metrics" aria-label="Indicadores"><div class="metric"><span>Turmas</span><strong id="qTurmas">—</strong><small>Turmas cadastradas</small></div><div class="metric"><span>Alunos</span><strong id="qAlunos">—</strong><small>Alunos cadastrados</small></div><div class="metric"><span>Atividades</span><strong id="qAtividades">—</strong><small>Atividades publicadas</small></div><div class="metric"><span>Conclusões</span><strong id="qConclusoes">—</strong><small>Registros de participação</small></div></section>
+    <div class="columns"><section class="panel"><div class="panelhead"><div><h2>Turmas e alunos</h2><p>Cadastre alunos de demonstração por turma.</p></div></div><form id="formAluno" class="form"><label>Nome do aluno<input id="nomeAluno" required minlength="2" maxlength="90" placeholder="Ex.: Beatriz Costa" /></label><label>Turma<select id="turmaAluno"></select></label><button type="submit">Adicionar aluno</button></form><div id="listaTurmas" class="items"></div></section>
+    <section class="panel"><div class="panelhead"><div><h2>Atividades escolares</h2><p>Publique atividades e registre a conclusão.</p></div></div><form id="formAtividade" class="form"><label>Título da atividade<input id="tituloAtividade" required minlength="2" maxlength="90" placeholder="Ex.: Revisão de geometria" /></label><label>Turma<select id="turmaAtividade"></select></label><label>Matéria<select id="categoria"><option>Português</option><option>Matemática</option><option>Ciências</option><option>História</option><option>Outras</option></select></label><button type="submit">Criar atividade</button></form><div class="divider"></div><form id="formConclusao" class="form"><h3>Registrar conclusão</h3><label>Aluno<select id="alunoConclusao"></select></label><label>Atividade<select id="atividadeConclusao"></select></label><button type="submit" class="secondary">Marcar como concluída</button></form></section></div>
+    <section class="panel report"><div class="panelhead"><div><h2>Relatório de participação</h2><p>Percentual de conclusões por turma (alunos × atividades).</p></div><button id="reset" type="button" class="outline">Restaurar dados de exemplo</button></div><div id="relatorios"></div></section>
+    <p id="feedback" role="status" aria-live="polite"></p>
+  </main>
+  <footer>EduFlux · Protótipo de plataforma educacional baseado no domínio 2 da N2-P1 · Sem backend nem integração com escolas reais</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
